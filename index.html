@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Just For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 520px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
+}
+
+.hidden { display: none; }
+
+h1 {
+  font-size: 2.2rem;
+}
+
+p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+button {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Slideshow */
+.slideshow {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  transition: background-image 1s ease-in-out;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 22px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from {transform: translateY(0); opacity: 1;}
+  to {transform: translateY(-120vh); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="countdownScreen">
+  <h1>Something special is coming… 💖</h1>
+  <p id="countdown"></p>
+</div>
+
+<div class="card hidden" id="slideshowScreen">
+  <div class="slideshow" id="slideshow"></div>
+  <p>
+    Every picture holds a memory,<br>
+    every memory holds my heart 💕
+  </p>
+  <button onclick="showQuestion()">Continue 💌</button>
+</div>
+
+<div class="card hidden" id="questionScreen">
+  <h1>So I have to ask…</h1>
+  <p>
+    Through all the smiles, laughs,<br>
+    and moments like these…
+  </p>
+  <h1>Will you be my Valentine? 💘</h1>
+  <button onclick="sayYes()">YES 💖</button>
+</div>
+
+<div class="card hidden" id="yesScreen">
+  <h1>BEST ANSWER EVER 😭💞</h1>
+  <p>
+    Happy Valentine’s Day,<br>
+    my favorite person,<br>
+    my always ❤️
+  </p>
+</div>
+
+<script>
+// 🔴 SET YOUR DATE HERE
+const targetDate = new Date("February 14, 2026 00:00:00").getTime();
+
+const countdownEl = document.getElementById("countdown");
+const countdownScreen = document.getElementById("countdownScreen");
+const slideshowScreen = document.getElementById("slideshowScreen");
+
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    clearInterval(timer);
+    countdownScreen.classList.add("hidden");
+    slideshowScreen.classList.remove("hidden");
+    startSlideshow();
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdownEl.innerHTML =
+    `${days} days ${hours}h ${minutes}m ${seconds}s 💫`;
+}, 1000);
+
+// 📸 SLIDESHOW IMAGES
+const photos = [
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg"
+];
+
+let index = 0;
+function startSlideshow() {
+  const slide = document.getElementById("slideshow");
+  slide.style.backgroundImage = `url(${photos[index]})`;
+  setInterval(() => {
+    index = (index + 1) % photos.length;
+    slide.style.backgroundImage = `url(${photos[index]})`;
+  }, 2500);
+}
+
+function showQuestion() {
+  slideshowScreen.classList.add("hidden");
+  document.getElementById("questionScreen").classList.remove("hidden");
+}
+
+function sayYes() {
+  document.getElementById("questionScreen").classList.add("hidden");
+  document.getElementById("yesScreen").classList.remove("hidden");
+  launchHearts();
+}
+
+// 💕 Hearts
+function launchHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
