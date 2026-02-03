@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 My Valentine</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 * { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -19,13 +13,15 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  overflow: hidden; /* keep background locked */
 }
 
 /* ---------- CARD ---------- */
 .card {
   width: 430px;
   max-width: 95%;
+  max-height: 90vh;              /* 👈 enables scrolling */
+  overflow-y: auto;              /* 👈 scroll inside card */
   background: rgba(255,255,255,0.97);
   border-radius: 32px;
   padding: 2.8rem 2.2rem;
@@ -35,6 +31,11 @@ body {
     inset 0 0 0 1px rgba(255,182,193,0.6);
   animation: appear 1s ease;
   position: relative;
+  scrollbar-width: none;         /* Firefox */
+}
+
+.card::-webkit-scrollbar {
+  width: 0px;                    /* Chrome/Safari */
 }
 
 .hidden { display: none; }
@@ -151,103 +152,3 @@ button {
   100% { background-position: 0% 50%; }
 }
 </style>
-</head>
-
-<body>
-
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- INTRO -->
-<div class="card" id="intro">
-  <h1>Hey my love 💕</h1>
-
-  <div class="frame">
-    <img src="photo1.jpg" alt="Us">
-  </div>
-
-  <p>Every moment with you feels like a blessing I never want to end.</p>
-  <p>You’re my favorite feeling, my safest place, my sweetest love 🤍</p>
-
-  <button class="yes-btn" onclick="next()">Continue ✨</button>
-</div>
-
-<!-- QUESTION -->
-<div class="card hidden" id="question">
-  <button class="back" onclick="back()">⬅</button>
-
-  <h1>In this season of love…</h1>
-  <p>I don’t want to imagine it without you by my side.</p>
-  <p><strong>Will you be my Valentine?</strong> 💘</p>
-
-  <div class="buttons">
-    <button class="yes-btn" onclick="yes()">Yes 💖</button>
-    <button class="no-btn" id="no" onmouseover="escapeNo()">No 🙄</button>
-  </div>
-</div>
-
-<!-- YES -->
-<div class="card hidden" id="yesScreen">
-  <h1>You chose me 😍</h1>
-
-  <div class="frame">
-    <img src="photo2.jpg" alt="Love">
-  </div>
-
-  <p>You make my world softer, brighter, and so full of love.</p>
-  <p>Happy Valentine’s Day, my heart 🤍</p>
-
-  <button class="yes-btn" onclick="restart()">Replay 💫</button>
-</div>
-
-<script>
-const intro = document.getElementById("intro");
-const question = document.getElementById("question");
-const yesScreen = document.getElementById("yesScreen");
-const noBtn = document.getElementById("no");
-const music = document.getElementById("music");
-
-function next() {
-  intro.classList.add("hidden");
-  question.classList.remove("hidden");
-  music.play().catch(()=>{});
-}
-
-function back() {
-  question.classList.add("hidden");
-  intro.classList.remove("hidden");
-}
-
-function yes() {
-  question.classList.add("hidden");
-  yesScreen.classList.remove("hidden");
-  hearts();
-}
-
-function restart() {
-  yesScreen.classList.add("hidden");
-  intro.classList.remove("hidden");
-}
-
-function escapeNo() {
-  const x = Math.random() * 260 - 130;
-  const y = Math.random() * 100 - 50;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-}
-
-function hearts() {
-  setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "💖";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.fontSize = Math.random() * 22 + 18 + "px";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 5000);
-  }, 350);
-}
-</script>
-
-</body>
-</html>
