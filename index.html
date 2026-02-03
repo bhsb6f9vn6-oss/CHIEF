@@ -11,9 +11,7 @@
 <style>
 * { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -44,9 +42,7 @@ body {
   scrollbar-width: none;
 }
 
-.card::-webkit-scrollbar {
-  width: 0px;
-}
+.card::-webkit-scrollbar { width: 0px; }
 
 .hidden { display: none; }
 
@@ -59,12 +55,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-p {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0.7rem 0;
-}
+p { color: #555; font-size: 1rem; line-height: 1.6; margin: 0.7rem 0; }
 
 /* ---------- IMAGE ---------- */
 .frame {
@@ -77,18 +68,10 @@ p {
   box-shadow: 0 18px 35px rgba(255,105,135,0.3);
 }
 
-.frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- BUTTONS ---------- */
-.buttons {
-  margin-top: 2.2rem;
-  position: relative;
-  height: 100px;
-}
+.buttons { margin-top: 2.2rem; position: relative; height: 100px; }
 
 button {
   padding: 15px 36px;
@@ -110,9 +93,7 @@ button {
   animation: glow 4s infinite;
 }
 
-.yes-btn:hover {
-  transform: translateY(-4px) scale(1.07);
-}
+.yes-btn:hover { transform: translateY(-4px) scale(1.07); }
 
 /* NO */
 .no-btn {
@@ -143,24 +124,9 @@ button {
   opacity: 0.9;
 }
 
-@keyframes float {
-  to {
-    transform: translateY(-120vh) scale(1.6);
-    opacity: 0;
-  }
-}
-
-/* ANIMATIONS */
-@keyframes appear {
-  from { opacity: 0; transform: scale(0.9) translateY(15px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes glow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+@keyframes float { to { transform: translateY(-120vh) scale(1.6); opacity: 0; } }
+@keyframes appear { from { opacity: 0; transform: scale(0.9) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes glow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 </style>
 </head>
 
@@ -173,7 +139,7 @@ button {
 
 <!-- INTRO -->
 <div class="card" id="intro">
-  <h1>Hey my love 💕</h1>
+  <h1>Hey Esther 💕</h1>
 
   <div class="frame">
     <img src="photo1.jpg" alt="Us">
@@ -220,21 +186,12 @@ const yesScreen = document.getElementById("yesScreen");
 const noBtn = document.getElementById("no");
 const music = document.getElementById("music");
 
-let musicStarted = false;
-
-/* AUDIO UNLOCK */
-function startMusic() {
-  if (!musicStarted) {
-    music.volume = 0.6;
-    music.play().then(() => {
-      musicStarted = true;
-    }).catch(() => {});
-  }
-}
-
-/* NAVIGATION */
+/* NAVIGATION AND MUSIC */
 function next() {
-  startMusic();
+  // Play music on click
+  music.volume = 0.6;
+  music.play().catch(()=>{});
+  
   intro.classList.add("hidden");
   question.classList.remove("hidden");
   question.scrollTop = 0;
@@ -247,7 +204,6 @@ function back() {
 }
 
 function yes() {
-  startMusic();
   question.classList.add("hidden");
   yesScreen.classList.remove("hidden");
   yesScreen.scrollTop = 0;
@@ -260,7 +216,7 @@ function restart() {
   intro.scrollTop = 0;
 }
 
-/* NO BUTTON */
+/* NO BUTTON ESCAPE */
 function escapeNo() {
   const x = Math.random() * 260 - 130;
   const y = Math.random() * 100 - 50;
@@ -279,10 +235,6 @@ function hearts() {
     setTimeout(() => h.remove(), 5000);
   }, 350);
 }
-
-/* MOBILE + DESKTOP AUDIO UNLOCK */
-document.body.addEventListener("click", startMusic, { once: true });
-document.body.addEventListener("touchstart", startMusic, { once: true });
 </script>
 
 </body>
