@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>🌌 A Cosmic Question</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 My Valentine</title>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; }
@@ -14,261 +14,238 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #0b0f2b, #000);
+  background: radial-gradient(circle at top, #fff5f7, #f6d6de);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-  color: #fff;
 }
 
-/* ------------------ STARRY BACKGROUND ------------------ */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 70% 60%, #fff, transparent),
-    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
-    radial-gradient(2px 2px at 80% 20%, #fff, transparent);
-  animation: stars 10s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes stars {
-  from { transform: translateY(0); }
-  to { transform: translateY(-200px); }
-}
-
-/* ------------------ SCREEN CARD ------------------ */
-.screen {
-  background: rgba(10,15,45,0.95);
-  padding: 2.5rem 2rem;
-  border-radius: 28px;
+/* ---------- CARD ---------- */
+.card {
+  width: 430px;
+  max-width: 95%;
+  background: rgba(255,255,255,0.97);
+  border-radius: 32px;
+  padding: 2.8rem 2.2rem;
   text-align: center;
   box-shadow:
-    0 0 40px rgba(120,150,255,0.35),
-    inset 0 0 0 1px rgba(120,150,255,0.3);
-  width: 420px;
-  max-width: 95%;
-  animation: slideIn 0.8s ease;
+    0 35px 70px rgba(190,90,120,0.35),
+    inset 0 0 0 1px rgba(255,182,193,0.6);
+  animation: appear 1s ease;
   position: relative;
-  backdrop-filter: blur(6px);
 }
 
 .hidden { display: none; }
 
-/* ------------------ TEXT ------------------ */
+/* ---------- TEXT ---------- */
 h1 {
-  font-family: 'Orbitron', sans-serif;
-  color: #b9c7ff;
+  font-family: 'Playfair Display', serif;
+  color: #c94b6a;
+  font-size: 1.9rem;
+  line-height: 1.3;
   margin-bottom: 1rem;
-  font-size: 1.6rem;
-  line-height: 1.4;
-  text-shadow: 0 0 12px rgba(120,150,255,0.6);
 }
 
 p {
-  color: #ddd;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0.6rem 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.7rem 0;
 }
 
-/* ------------------ IMAGE ------------------ */
-.photo-frame {
+/* ---------- IMAGE ---------- */
+.frame {
   width: 100%;
-  height: 280px;
-  border-radius: 18px;
+  height: 320px;
+  border-radius: 22px;
   overflow: hidden;
-  margin: 1.4rem 0;
-  border: 2px solid rgba(120,150,255,0.5);
-  box-shadow: 0 0 25px rgba(120,150,255,0.4);
+  margin: 1.6rem 0;
+  border: 2px solid rgba(255,182,193,0.6);
+  box-shadow: 0 18px 35px rgba(255,105,135,0.3);
 }
 
-.photo-frame img {
+.frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* ------------------ BUTTONS ------------------ */
-.btn-wrapper {
-  margin-top: 2rem;
+/* ---------- BUTTONS ---------- */
+.buttons {
+  margin-top: 2.2rem;
   position: relative;
-  height: 90px;
+  height: 100px;
 }
 
 button {
-  padding: 14px 36px;
-  border-radius: 50px;
+  padding: 15px 36px;
+  border-radius: 60px;
   font-size: 1rem;
-  cursor: pointer;
-  margin: 10px;
-  transition: all 0.35s ease;
   font-family: 'Poppins', sans-serif;
-  letter-spacing: 0.6px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  letter-spacing: 0.4px;
 }
 
-/* Neon button */
-.primary {
-  background: linear-gradient(135deg, #6b8cff, #b98cff);
+/* YES */
+.yes-btn {
+  background: linear-gradient(120deg, #ff6f91, #ffc1cc, #ff6f91);
+  background-size: 200% 200%;
   color: white;
   border: none;
-  box-shadow: 0 0 20px rgba(150,170,255,0.8);
-  animation: pulse 2.5s infinite;
+  box-shadow: 0 14px 32px rgba(255,105,135,0.55);
+  animation: glow 4s infinite;
 }
 
-.primary:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 35px rgba(180,200,255,1);
+.yes-btn:hover {
+  transform: translateY(-4px) scale(1.07);
 }
 
-/* Dodge button */
-.secondary {
-  background: transparent;
-  color: #b9c7ff;
-  border: 2px dashed #6b8cff;
+/* NO */
+.no-btn {
+  background: white;
+  color: #c94b6a;
+  border: 2px dashed #ff9eb2;
   position: absolute;
 }
 
-/* Back */
-.back-btn {
+/* ---------- BACK ---------- */
+.back {
   position: absolute;
   top: 18px;
   left: 18px;
-  background: none;
+  background: transparent;
   border: none;
   font-size: 1.3rem;
   cursor: pointer;
-  color: #b9c7ff;
+  color: #c94b6a;
 }
 
-/* ------------------ EFFECTS ------------------ */
-.sparkle {
+/* ---------- FLOATING HEARTS ---------- */
+.heart {
   position: fixed;
   bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 5s linear forwards;
+  animation: float 5s linear forwards;
   pointer-events: none;
+  opacity: 0.9;
 }
 
-@keyframes floatUp {
+@keyframes float {
   to {
-    transform: translateY(-120vh) rotate(360deg) scale(1.5);
+    transform: translateY(-120vh) scale(1.6);
     opacity: 0;
   }
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(30px) scale(0.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+/* ---------- ANIMATIONS ---------- */
+@keyframes appear {
+  from { opacity: 0; transform: scale(0.9) translateY(15px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px rgba(150,170,255,0.6); }
-  50% { box-shadow: 0 0 35px rgba(180,200,255,1); }
-  100% { box-shadow: 0 0 20px rgba(150,170,255,0.6); }
+@keyframes glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- INTRO -->
-<div class="screen" id="intro">
-  <h1>Hello my universe ✨</h1>
+<div class="card" id="intro">
+  <h1>Hey my love 💕</h1>
 
-  <div class="photo-frame">
+  <div class="frame">
     <img src="photo1.jpg" alt="Us">
   </div>
 
-  <p>Out of all the stars I could’ve met…</p>
-  <p>somehow, I found you 💫</p>
+  <p>Every moment with you feels like a blessing I never want to end.</p>
+  <p>You’re my favorite feeling, my safest place, my sweetest love 🤍</p>
 
-  <button class="primary" onclick="goToQuestion()">Continue 🚀</button>
+  <button class="yes-btn" onclick="next()">Continue ✨</button>
 </div>
 
 <!-- QUESTION -->
-<div class="screen hidden" id="question">
-  <button class="back-btn" onclick="goBack()">⬅</button>
+<div class="card hidden" id="question">
+  <button class="back" onclick="back()">⬅</button>
 
-  <h1>No matter how fast time moves,  
-  I’d still choose you in every lifetime.</h1>
+  <h1>In this season of love…</h1>
+  <p>I don’t want to imagine it without you by my side.</p>
+  <p><strong>Will you be my Valentine?</strong> 💘</p>
 
-  <p>Will you be my Valentine? 🌙</p>
-
-  <div class="btn-wrapper">
-    <button class="primary" onclick="sayYes()">Yes 🌌</button>
-    <button class="secondary" id="noBtn" onmouseover="moveNo()">No 🫣</button>
+  <div class="buttons">
+    <button class="yes-btn" onclick="yes()">Yes 💖</button>
+    <button class="no-btn" id="no" onmouseover="escapeNo()">No 🙄</button>
   </div>
 </div>
 
 <!-- YES -->
-<div class="screen hidden" id="yes">
-  <h1>You said YES 😍✨</h1>
+<div class="card hidden" id="yesScreen">
+  <h1>You chose me 😍</h1>
 
-  <div class="photo-frame">
+  <div class="frame">
     <img src="photo2.jpg" alt="Love">
   </div>
 
-  <p>You’re my favorite miracle.</p>
-  <p>Happy Valentine’s Day 💜</p>
+  <p>You make my world softer, brighter, and so full of love.</p>
+  <p>Happy Valentine’s Day, my heart 🤍</p>
 
-  <button class="primary" onclick="goHome()">Replay 💫</button>
+  <button class="yes-btn" onclick="restart()">Replay 💫</button>
 </div>
 
 <script>
 const intro = document.getElementById("intro");
 const question = document.getElementById("question");
-const yes = document.getElementById("yes");
-const noBtn = document.getElementById("noBtn");
-const music = document.getElementById("bgMusic");
+const yesScreen = document.getElementById("yesScreen");
+const noBtn = document.getElementById("no");
+const music = document.getElementById("music");
 
-function goToQuestion() {
+function next() {
   intro.classList.add("hidden");
   question.classList.remove("hidden");
   music.play().catch(()=>{});
 }
 
-function goBack() {
+function back() {
   question.classList.add("hidden");
   intro.classList.remove("hidden");
 }
 
-function goHome() {
-  yes.classList.add("hidden");
+function yes() {
+  question.classList.add("hidden");
+  yesScreen.classList.remove("hidden");
+  hearts();
+}
+
+function restart() {
+  yesScreen.classList.add("hidden");
   intro.classList.remove("hidden");
 }
 
-function moveNo() {
+function escapeNo() {
   const x = Math.random() * 260 - 130;
-  const y = Math.random() * 90 - 45;
+  const y = Math.random() * 100 - 50;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-function sayYes() {
-  question.classList.add("hidden");
-  yes.classList.remove("hidden");
-  sparkles();
-}
-
-function sparkles() {
+function hearts() {
   setInterval(() => {
-    const s = document.createElement("div");
-    s.className = "sparkle";
-    s.innerHTML = "✨🌙💜";
-    s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = Math.random() * 22 + 14 + "px";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 5000);
-  }, 250);
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = Math.random() * 22 + 18 + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }, 350);
 }
 </script>
 
